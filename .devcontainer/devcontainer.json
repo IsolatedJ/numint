@@ -1,0 +1,21 @@
+{
+  "name": "numint",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postCreateCommand": "bash scripts/setup.sh",
+  "postStartCommand": "bash scripts/setup.sh",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": { "label": "numint web UI", "onAutoForward": "notify" }
+  },
+  "containerEnv": { "VIRTUAL_ENV": "${containerWorkspaceFolder}/.venv" },
+  "remoteEnv": { "PATH": "${containerWorkspaceFolder}/.venv/bin:${containerEnv:PATH}" },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "charliermarsh.ruff"],
+      "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+        "python.testing.pytestEnabled": true
+      }
+    }
+  }
+}

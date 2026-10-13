@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "numint: setup / repair venv",
+      "type": "shell",
+      "command": "bash scripts/setup.sh",
+      "problemMatcher": []
+    },
+    {
+      "label": "numint: run tests",
+      "type": "shell",
+      "command": ".venv/bin/pytest -q",
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "numint: lint",
+      "type": "shell",
+      "command": ".venv/bin/ruff check src tests",
+      "problemMatcher": []
+    },
+    {
+      "label": "numint: list providers & keys",
+      "type": "shell",
+      "command": ".venv/bin/numint providers",
+      "problemMatcher": []
+    },
+    {
+      "label": "numint: offline lookup (prompt for number)",
+      "type": "shell",
+      "command": ".venv/bin/numint '${input:phone}' --offline",
+      "problemMatcher": []
+    },
+    {
+      "label": "numint: start web UI (port 8080)",
+      "type": "shell",
+      "command": ".venv/bin/numint web --host 0.0.0.0 --port 8080",
+      "isBackground": true,
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "phone",
+      "type": "promptString",
+      "description": "Phone number in E.164 format (only numbers you are authorized to look up)",
+      "default": "+14155550123"
+    }
+  ]
+}

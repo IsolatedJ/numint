@@ -11,6 +11,8 @@ env/
 
 # Secrets & local config
 .env
+.env.*
+!.env.example
 *.local
 
 # Caches / tooling
@@ -24,7 +26,8 @@ diskcache/
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/
+.vscode/*
+!.vscode/tasks.json
 
 # Claude Code local settings
 .claude/settings.local.json
